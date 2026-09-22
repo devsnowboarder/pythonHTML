@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    @page {
+        size: A4;
+        margin: 15mm 12mm;
+        background-color: #faf8f5;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #faf8f5;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+</style>
+</head>
+<body>
+
+<div style="max-width: 600px; margin: 0 auto; padding: 24px; background: #ffffff; border-radius: 12px; border: 10px solid #2596be;">
+
+    <h2 style="margin: 0 0 16px 0; font-size: 24px; text-align: center; color: #111827;">
+        Hello, <span style="color: #2563eb;">{{ user_name }}</span> 👋
+    </h2>
+
+    <div style="margin-bottom: 12px; text-align: center; color: #4b5563; font-size: 20px;">
+        <strong>Age:</strong> {{ user_age }} years old
+    </div>
+
+    <hr style="padding-top: 16px; border: none; border-top: 5px solid black;">
+
+    <div style="font-size: 24px; text-align: center; font-weight: 700; color: #000000; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.05em;">
+        Total Income
+    </div>
+
+    <div style="padding-top: 16px; font-size: 20px; font-weight: 700; color: #000000;">
+        <strong>Total Annual Income..............</strong> ${{ "{:,.2f}".format(initial_income) }}
+    </div><br>
+
+    <hr style="padding-top: 16px; border: none; border-top: 5px solid black;">
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 16px; margin-bottom: 16px; font-size: 18px;">
+        <thead>
+            <tr style="border-bottom: 2px solid #000000; text-align: left;">
+                <th style="padding: 8px 0; color: #111827; font-weight: 700;">Income Details</th>
+                <th style="padding: 8px 0; color: #111827; text-align: right; font-weight: 700;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 10px 0; color: #4b5563;">Part 1 Income</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">${{ "{:,.2f}".format(income_part1) }}</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 8px 0; color: #4b5563;">Social Security 1/2 Tax</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">${{ "{:,.2f}".format(social_security_tax) }}</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 8px 0; color: #4b5563;">Adjustable Gross Income</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">${{ "{:,.2f}".format(adjusted_gross_income) }}</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 0; color: #FF2B00; font-weight: 700;">Combined Income Taxable</td>
+                <td style="padding: 12px 0; color: #FF2B00; font-weight: 700; text-align: right;">${{ "{:,.2f}".format(combined_income) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr style="border: none; border-top: 5px solid black; margin-top: 24px;">
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 16px; margin-bottom: 16px; font-size: 18px;">
+        <thead>
+            <tr style="border-bottom: 2px solid #000000; text-align: left;">
+                <th style="padding: 8px 0; color: #111827; font-weight: 700;">Deduction Details</th>
+                <th style="padding: 8px 0; color: #111827; text-align: right; font-weight: 700;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 8px 0; color: #4b5563;">Standard Deduction</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">$16,100.00</td>
+            </tr>
+            {% if user_age >= 65 %}
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 8px 0; color: #4b5563;">Senior Temporary Deduction</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">$6,000.00</td>
+            </tr>
+            <tr style="border-bottom: 1px dashed #cccccc;">
+                <td style="padding: 8px 0; color: #4b5563;">Senior bonus deduction 65+</td>
+                <td style="padding: 8px 0; color: #4b5563; text-align: right;">$2,050.00</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td style="padding: 12px 0; color: #FF2B00; font-weight: 700;">Total Deduction</td>
+                <td style="padding: 12px 0; color: #FF2B00; font-weight: 700; text-align: right;">${{ "{:,.2f}".format(total_deduction) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="padding-top: 16px; margin-bottom: 12px; color: #4b5563; font-size: 18px;">
+        <strong>Federal Taxable Income..................</strong> ${{ "{:,.2f}".format(federal_taxable_income) }}
+    </div>
+
+    <hr style="border: none; border-top: 5px solid black; padding-top: 16px;">
+
+    <div style="text-align: center; padding-top: 16px; margin-bottom: 12px; font-weight: 700; color: #000000; font-size: 18px;">
+        <strong>Year 2026 Estimated Tax</strong>
+    </div>
+
+    <div style="padding-top: 16px; margin-bottom: 12px; font-weight: 700; color: #F50253; font-size: 18px;">
+        <strong>Federal Estimated Tax..........</strong> ${{ "{:,.2f}".format(federal_tax) }}
+    </div>
+
+    <hr style="border: none; border-top: 5px solid black; margin-top: 20px;">
+    <div> <p style="font-size: 20pt; font-weight: bold;">Roth IRA</p></div>
+     <div style="margin-bottom: 12px; font-weight: normal; color: #000000; font-size: 18px;">
+        <p>A Roth IRA is a tax-advantaged individual retirement account funded with after-tax money,
+             meaning you do not get an upfront tax deduction on contributions.
+            However, the investments grow tax-free, and all qualified withdrawals
+            in retirement are completely free of federal income tax.</p>
+     </div>
+    <!-- Roth IRA and Medicare sections omitted for brevity, keep them exactly as you had them! -->
+
+</div>
+
+</body>
+</html>

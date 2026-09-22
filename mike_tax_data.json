@@ -1,0 +1,12 @@
+{
+    "user_name": "mike",
+    "user_age": 67,
+    "initial_income": 75000.0,
+    "income_part1": 35000.0,
+    "social_security_tax": 20000.0,
+    "adjusted_gross_income": 57350.0,
+    "combined_income": 55000.0,
+    "total_deduction": 24150,
+    "federal_taxable_income": 33200.0,
+    "federal_tax": 3736.0
+}
