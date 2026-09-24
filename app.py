@@ -13,6 +13,7 @@ def get_standard_deduction(age):
     return base_deduction
 
 
+
 def calculate_taxes(user_age, yearly_income, social_security):
     """Handles all IRS tax logic and returns a dictionary of calculated values."""
 
